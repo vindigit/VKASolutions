@@ -18,8 +18,8 @@ This app creates realistic IT support scenarios such as:
 ## Users
 
 - Vindon Alexander — CEO
-- Brother 1 — Tier 1 Support Technician
-- Brother 2 — Tier 2 Support Technician
+- Vairon Alexander — IT Support Technician
+- Valon Alexander — IT Support Technician
 
 ## Support Workflow
 
