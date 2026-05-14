@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "node -e \"console.log('No ESLint configuration is set up for this repo. Run npm run typecheck and npm run build.')\"",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

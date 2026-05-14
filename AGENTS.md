@@ -2,40 +2,35 @@
 
 ## Project
 
-VKA CRM is a fake internal CRM for VKA Solutions. It exists to support beginner IT help desk training with realistic CRM incidents and role-based troubleshooting.
+VKA Solutions Support Portal is a customer-facing support app for a hypothetical home and small-business IT services company.
 
-## Operational Context
+## Product Direction
 
-- Only the project owner uses GitHub.
-- The two technicians do not edit code.
-- Technicians use Freshdesk, the CRM web app, documentation, and remote support tools.
-- The app should behave like a believable internal business system, not a toy demo.
+- Public-facing customer portal
+- Freshdesk is the real ticketing system
+- The app is the customer front door
+- No customer login required for MVP
+- Keep the language practical and non-corporate
 
 ## Engineering Rules
 
-- Use seeded local data only.
-- Do not introduce real authentication.
-- Do not require paid services.
-- Keep deployment simple.
-- Prefer straightforward UI patterns over unnecessary complexity.
-- Every feature should reinforce a help desk training scenario.
+- Keep Freshdesk secrets on the server only
+- Use a mock ticket adapter when backend credentials are not configured
+- Keep the UI responsive and easy to deploy
+- Avoid unnecessary complexity or paid dependencies
+- Use plain customer-friendly language across the portal
 
-## Current App Scope
+## Current Scope
 
-- Fake login selector
-- Dashboard
-- Customer records
-- Customer detail records
-- Role-based access simulation
-- Issue reporting form
-- IT admin tools simulation
+- Home page
+- Submit Ticket form
+- Services page
+- Knowledge Base page
+- Ticket Status lookup
+- Contact page
 
-## Training Scenarios
+## Integration Notes
 
-- CEO account locked
-- Sales user missing CRM access
-- Duplicate customer record
-- Export button error
-- Password reset request
-- New employee onboarding
-- Terminated employee access removal
+- Ticket submission should go through the server-side service layer
+- Ticket status lookup is mock-based for MVP
+- Real Freshdesk status lookup can be added later through a safe backend flow

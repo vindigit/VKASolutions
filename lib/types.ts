@@ -1,53 +1,82 @@
-export type Role = "ceo" | "sales" | "hr" | "it_admin" | "it_support";
+export type CustomerType = "Home" | "Small Business";
 
-export type User = {
-  id: string;
-  name: string;
-  email: string;
-  role: Role;
-  title: string;
-  department: string;
-  status: "active" | "locked" | "pending" | "terminated";
-  crmAccess: boolean;
-  notes: string[];
-};
+export type TicketCategory =
+  | "Wi-Fi / Internet"
+  | "Email / Login"
+  | "Printer / Scanner"
+  | "Mobile Device"
+  | "Smart TV / Streaming"
+  | "Microsoft 365 / Google Workspace"
+  | "CRM / Spreadsheet Import"
+  | "Security / MFA"
+  | "Hardware Setup"
+  | "Other";
 
-export type Customer = {
-  id: string;
-  name: string;
-  segment: string;
-  owner: string;
-  health: "healthy" | "watch" | "at-risk";
-  renewalDate: string;
-  openIssues: number;
-  duplicateGroup?: string;
-  notes: string[];
-};
+export type PreferredContactMethod = "Phone" | "Email" | "Text";
 
-export type Scenario = {
-  id: string;
-  title: string;
-  severity: "low" | "medium" | "high";
-  summary: string;
-  linkedUserId?: string;
-  linkedCustomerId?: string;
-  status: "open" | "investigating" | "resolved";
-  trainingFocus: string;
-};
+export type BestTimeToContact = "Morning" | "Afternoon" | "Evening";
 
-export type TicketTemplate = {
-  id: string;
-  title: string;
-  category: string;
-  urgency: "low" | "medium" | "high";
-  requestedBy: string;
-  summary: string;
-};
+export type TicketStatus = "Open" | "In Progress" | "Waiting on Customer" | "Resolved" | "Closed";
 
-export type AdminTool = {
-  id: string;
+export type SupportArea = {
   title: string;
   description: string;
-  allowedRoles: Role[];
-  impact: string;
+};
+
+export type ServiceSection = {
+  title: string;
+  description: string;
+  items: string[];
+};
+
+export type KnowledgeBaseArticle = {
+  slug: string;
+  title: string;
+  summary: string;
+};
+
+export type SupportRequestInput = {
+  fullName: string;
+  email: string;
+  phone: string;
+  customerType: CustomerType;
+  issueCategory: TicketCategory;
+  deviceType: string;
+  issueDescription: string;
+  preferredContactMethod: PreferredContactMethod;
+  bestTimeToContact: BestTimeToContact;
+};
+
+export type TicketSubmissionResult = {
+  ok: boolean;
+  ticketId?: string;
+  message: string;
+  nextSteps?: string[];
+  expectedResponse?: string;
+  usedMockService: boolean;
+};
+
+export type TicketLookupInput = {
+  ticketId: string;
+  email: string;
+};
+
+export type TicketStatusRecord = {
+  ticketId: string;
+  email: string;
+  subject: string;
+  status: TicketStatus;
+  updatedAt: string;
+  note: string;
+};
+
+export type FreshdeskTicketPayload = {
+  name: string;
+  email: string;
+  subject: string;
+  description: string;
+  priority: number;
+  status: number;
+  phone?: string;
+  custom_fields?: Record<string, string>;
 };

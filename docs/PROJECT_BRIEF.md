@@ -2,36 +2,29 @@
 
 ## Overview
 
-VKA CRM is an internal CRM simulation for the fictional company VKA Solutions. The product is meant to train beginner IT support technicians in the types of issues they will see around user accounts, application access, customer data quality, and support process handling.
-
-## Audience
-
-- Primary owner: repository maintainer using GitHub
-- Primary trainees: two help desk technicians
-- Training tools around the app: Freshdesk, documentation, and remote support utilities
+VKA Solutions Support Portal is a customer-facing web portal for a fictional IT support company serving homes and small businesses. The portal gives customers a simple way to request support and understand the types of help VKA Solutions provides.
 
 ## Objectives
 
-- Provide a realistic but low-cost internal web app
-- Simulate common support scenarios without real risk
-- Make it easy to deploy and reset
-- Keep code and documentation simple enough to extend later
+- Present VKA Solutions as a real support business
+- Make ticket submission simple and trustworthy
+- Keep Freshdesk as the operational ticketing system
+- Protect secrets by keeping integrations server-side
+- Keep the portal lightweight and easy to deploy
+
+## MVP Features
+
+- Home page with service overview
+- Support request form
+- Ticket confirmation page
+- Services page
+- Knowledge Base page
+- Ticket Status lookup with mock data
+- Contact page
 
 ## Non-Goals
 
-- Real identity management
-- Real CRM integrations
-- Production customer data
-- Paid SaaS dependencies for the app itself
-
-## MVP Deliverables
-
-- Fake login
-- Seeded demo accounts
-- Dashboard
-- Customers page
-- Customer detail page
-- Role-based access simulation
-- Report IT Issue form
-- IT admin tools page
-- Training documentation
+- Customer authentication
+- Direct browser-side Freshdesk access
+- Persistent local database storage
+- Full self-service knowledge base CMS

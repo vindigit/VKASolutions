@@ -1,50 +1,65 @@
-import { redirect } from "next/navigation";
-import { LoginForm } from "@/components/login-form";
-import { demoUsers, scenarios } from "@/lib/data";
-import { getCurrentUser } from "@/lib/session";
+import Link from "next/link";
+import { Hero } from "@/components/hero";
+import { ServiceCard } from "@/components/service-card";
+import { SiteLayout } from "@/components/site-layout";
+import { homeSupportAreas } from "@/data/services";
 
-export default async function LoginPage({
-  searchParams
-}: {
-  searchParams: Promise<{ error?: string }>;
-}) {
-  const user = await getCurrentUser();
-  if (user) {
-    redirect("/dashboard");
-  }
-
-  const params = await searchParams;
-
+export default function HomePage() {
   return (
-    <div className="login-wrap">
-      <div className="login-card">
-        <section className="hero">
-          <span className="brand-tag" style={{ background: "rgba(255,255,255,0.12)", color: "white" }}>
-            VKA Solutions
-          </span>
-          <h1>CRM training environment for realistic IT support work.</h1>
-          <p>
-            This app simulates internal access issues, customer record problems, onboarding tasks, and offboarding
-            errors using seeded local data only.
+    <SiteLayout>
+      <Hero />
+
+      <section className="section stack-md">
+        <div className="section-head">
+          <p className="eyebrow">How We Help</p>
+          <h2>Support built for real-world tech problems</h2>
+          <p className="muted">
+            Whether you need home tech help or practical support for a small business, VKA Solutions keeps the process
+            simple and easy to understand.
           </p>
-          <div className="grid-2">
-            <div className="stat-card" style={{ background: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.18)" }}>
-              <p className="eyebrow" style={{ color: "rgba(255,255,255,0.78)" }}>
-                Demo Users
-              </p>
-              <p className="stat-value">{demoUsers.length}</p>
-            </div>
-            <div className="stat-card" style={{ background: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.18)" }}>
-              <p className="eyebrow" style={{ color: "rgba(255,255,255,0.78)" }}>
-                Training Scenarios
-              </p>
-              <p className="stat-value">{scenarios.length}</p>
+        </div>
+        <div className="card-grid">
+          {homeSupportAreas.map((service) => (
+            <ServiceCard key={service.title} service={service} />
+          ))}
+        </div>
+      </section>
+
+      <section className="section grid-2">
+        <div className="panel stack-md">
+          <p className="eyebrow">Common Issues</p>
+          <h2 style={{ margin: 0 }}>What customers usually need help with</h2>
+          <ul className="list-clean">
+            <li className="feature-card">Wi-Fi and internet problems</li>
+            <li className="feature-card">Phone and tablet setup</li>
+            <li className="feature-card">Email and Microsoft 365 access</li>
+            <li className="feature-card">Printer, scanner, and device setup</li>
+          </ul>
+        </div>
+        <div className="panel stack-md">
+          <p className="eyebrow">Why VKA</p>
+          <h2 style={{ margin: 0 }}>Support that feels local and straightforward</h2>
+          <p className="muted" style={{ margin: 0 }}>
+            VKA Solutions is built for everyday support requests, not enterprise process overhead. Submit a ticket,
+            get a clear next step, and keep your ticket number for follow-up.
+          </p>
+          <div className="brand-stamp">
+            <div className="brand-stamp-mark">VKA</div>
+            <div className="brand-stamp-copy">
+              <strong>Customer support portal</strong>
+              <span>Built for homes, families, and small businesses.</span>
             </div>
           </div>
-        </section>
-
-        <LoginForm error={params.error} />
-      </div>
-    </div>
+          <div className="cta-row">
+            <Link href="/submit-ticket" className="btn">
+              Submit a Support Request
+            </Link>
+            <Link href="/ticket-status" className="btn-secondary">
+              Check Ticket Status
+            </Link>
+          </div>
+        </div>
+      </section>
+    </SiteLayout>
   );
 }

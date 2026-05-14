@@ -1,27 +1,24 @@
 # Support Workflow
 
-## Workflow Summary
+## Customer Flow
 
-1. End user experiences a CRM issue.
-2. Ticket is logged in Freshdesk.
-3. Technician reviews the ticket and verifies the user identity if needed.
-4. Technician reproduces the issue or checks access state in VKA CRM.
-5. Technician follows the documented playbook.
-6. Technician records actions, outcome, and any escalation notes.
-7. Ticket is resolved or escalated.
+1. Customer visits the VKA Solutions support portal.
+2. Customer submits a support request with issue details and contact preferences.
+3. The server-side ticket service sends the request to Freshdesk when credentials are configured.
+4. If Freshdesk credentials are not configured, the app uses the mock ticket adapter for MVP behavior.
+5. Customer receives a confirmation screen with a ticket ID and next-step guidance.
+6. Customer can later check ticket status using ticket number and email.
 
-## Recommended Technician Behavior
+## Freshdesk Notes
 
-- Ask clear validation questions
-- Record what changed
-- Confirm the issue is resolved from the user perspective
-- Escalate executive or security-sensitive requests quickly
-- Use the app and docs together, not in isolation
+- Freshdesk is the real ticketing system for live operations.
+- API keys must stay server-side.
+- Browser code must never contain the Freshdesk secret.
+- Live status lookup is not yet implemented in MVP.
 
-## App-to-Workflow Mapping
+## Customer Experience Goals
 
-- Dashboard: queue awareness
-- Customers: customer-specific issue review
-- Customer detail: context for duplicates and app failures
-- Report IT Issue: intake simulation
-- IT admin tools: remediation simulation
+- Fast form completion
+- Clear confirmation messaging
+- Plain-language status updates
+- Professional but approachable tone

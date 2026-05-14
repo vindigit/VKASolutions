@@ -35,6 +35,10 @@ a {
   text-decoration: none;
 }
 
+img {
+  max-width: 100%;
+}
+
 button,
 input,
 select,
@@ -45,30 +49,34 @@ textarea {
 .shell {
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 24px 0 40px;
 }
 
-.app-grid {
-  display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 20px;
-}
-
-.sidebar,
+.site-header,
 .panel,
-.hero {
+.hero,
+.feature-card {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(212, 223, 218, 0.9);
   box-shadow: var(--shadow);
   backdrop-filter: blur(12px);
 }
 
-.sidebar {
-  padding: 20px;
-  border-radius: 22px;
+.site-header {
   position: sticky;
-  top: 20px;
-  align-self: start;
+  top: 0;
+  z-index: 10;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  background: rgba(247, 251, 249, 0.92);
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 0;
 }
 
 .brand-tag {
@@ -83,43 +91,70 @@ textarea {
   text-transform: uppercase;
 }
 
-.sidebar h1,
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-lockup.compact {
+  gap: 12px;
+}
+
+.brand-copy {
+  display: grid;
+  gap: 8px;
+}
+
+.brand-logo {
+  width: auto;
+  height: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(212, 223, 218, 0.9);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.brand-title {
+  font-weight: 700;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.site-nav-link {
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+.site-nav-link:hover {
+  background: rgba(15, 108, 83, 0.08);
+}
+
 .hero h1,
-.page-head h1 {
-  margin: 14px 0 8px;
+.section-head h2,
+.panel h1,
+.panel h2 {
+  margin: 0 0 8px;
   font-size: clamp(1.8rem, 4vw, 2.7rem);
   line-height: 1;
 }
 
-.sidebar p,
 .hero p,
 .muted {
   color: var(--muted);
 }
 
-.nav-list {
-  display: grid;
-  gap: 10px;
-  margin: 24px 0;
-}
-
-.nav-link {
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: transparent;
-  border: 1px solid transparent;
-  transition: 120ms ease;
-}
-
-.nav-link:hover,
-.nav-link.active {
-  background: var(--panel-alt);
-  border-color: var(--line);
-}
-
-.main-stack {
+.page-stack,
+.section,
+.stack-md {
   display: grid;
   gap: 20px;
+  padding: 28px 0 40px;
 }
 
 .hero,
@@ -138,6 +173,71 @@ textarea {
 .hero p,
 .hero .muted {
   color: rgba(244, 251, 248, 0.82);
+}
+
+.hero-home {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.8fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.hero-panel {
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.hero-brand-block {
+  display: grid;
+  gap: 14px;
+}
+
+.hero-logo-frame,
+.success-logo-frame,
+.contact-logo-frame {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.hero-logo-frame {
+  width: 100%;
+  min-height: 220px;
+  padding: 18px;
+}
+
+.hero-logo,
+.success-logo,
+.contact-logo {
+  width: auto;
+  height: auto;
+  border-radius: 22px;
+}
+
+.hero-brand-copy {
+  display: grid;
+  gap: 8px;
+}
+
+.hero-brand-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.hero-divider {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.hero-list-item {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .grid-3,
@@ -159,15 +259,45 @@ textarea {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
-.stat-card,
-.scenario-card,
-.customer-card,
-.ticket-card,
-.tool-card {
+.feature-card,
+.success-card {
   padding: 18px;
   border-radius: 18px;
   border: 1px solid var(--line);
   background: var(--panel-alt);
+}
+
+.brand-stamp {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(15, 108, 83, 0.08), rgba(15, 108, 83, 0.02));
+}
+
+.brand-stamp-mark {
+  min-width: 72px;
+  min-height: 72px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: var(--brand-deep);
+  color: #f4fbf8;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.brand-stamp-copy {
+  display: grid;
+  gap: 4px;
+}
+
+.brand-stamp-copy span {
+  color: var(--muted);
 }
 
 .eyebrow {
@@ -178,20 +308,9 @@ textarea {
   color: var(--muted);
 }
 
-.stat-value {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0;
-}
-
 .stack-sm {
   display: grid;
   gap: 10px;
-}
-
-.stack-md {
-  display: grid;
-  gap: 16px;
 }
 
 .row {
@@ -250,17 +369,15 @@ textarea {
   color: white;
 }
 
-.btn:hover {
+.btn:hover,
+.btn-secondary:hover {
   background: var(--brand-deep);
+  color: white;
 }
 
 .btn-secondary {
   background: white;
   border: 1px solid var(--line);
-}
-
-.btn-secondary:hover {
-  background: var(--panel-alt);
 }
 
 .field {
@@ -281,40 +398,6 @@ textarea {
 .field textarea {
   min-height: 130px;
   resize: vertical;
-}
-
-.login-wrap {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-}
-
-.login-card {
-  width: min(980px, 100%);
-  display: grid;
-  grid-template-columns: 1.2fr 0.9fr;
-  gap: 20px;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.table th,
-.table td {
-  padding: 14px 10px;
-  border-bottom: 1px solid var(--line);
-  text-align: left;
-  vertical-align: top;
-}
-
-.table th {
-  font-size: 0.86rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--muted);
 }
 
 .alert {
@@ -347,15 +430,54 @@ textarea {
   margin: 6px 0;
 }
 
+.cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.section-head {
+  display: grid;
+  gap: 8px;
+}
+
+.page-hero {
+  min-height: 0;
+}
+
+.site-footer {
+  padding: 0 0 40px;
+}
+
+.success-header,
+.contact-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(240px, 0.7fr);
+  gap: 20px;
+}
+
 @media (max-width: 920px) {
-  .app-grid,
-  .login-card,
+  .hero-home,
   .grid-3,
-  .grid-2 {
+  .grid-2,
+  .footer-grid {
     grid-template-columns: 1fr;
   }
 
-  .sidebar {
-    position: static;
+  .site-header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .brand-lockup,
+  .site-nav {
+    justify-content: flex-start;
   }
 }
